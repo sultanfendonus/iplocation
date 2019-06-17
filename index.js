@@ -2,6 +2,9 @@ const express = require('express');
 var bodyParser = require('body-parser');
 var ip2loc = require("ip2location-nodejs");
 const App = express();
+const https = require('https');
+const fs = require('fs');
+
 // Create application/json parser
 App.use(bodyParser());
 App.use(bodyParser.urlencoded({extended: true}));
@@ -24,4 +27,12 @@ function getClientIP(req, res, next) {
 }
 
 
-App.listen("3001",()=>console.log("Connected !!"));
+//App.listen("3001",()=>console.log("Connected !!"));
+
+// we will pass our 'app' to 'https' server
+https.createServer({
+  key: fs.readFileSync('./key.pem'),
+  cert: fs.readFileSync('./cert.pem'),
+  passphrase: 'SULTAN16407916'
+}, app)
+.listen(3000);
