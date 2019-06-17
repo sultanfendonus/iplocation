@@ -1,0 +1,19 @@
+[req]
+distinguished_name = req_distinguished_name
+x509_extensions = v3_req
+prompt = no
+[req_distinguished_name]
+C = BD
+ST = DH
+L = DHAKA
+O = FENDONUS LIMITED
+OU = DHAKA
+CN = www.adfendo.com
+[v3_req]
+keyUsage = critical, digitalSignature, keyAgreement
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = adfendo.com
+DNS.2 = adfendo.com:8080
+DNS.3 = adfendo.com:3000

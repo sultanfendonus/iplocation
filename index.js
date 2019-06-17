@@ -11,12 +11,14 @@ App.use(bodyParser.urlencoded({extended: true}));
 
 //Get Ip adress
 
-App.get('/getIP', getClientIP);
+App.get('/getIP/:ip', getClientIP);
 
 function getClientIP(req, res, next) {
-  var ip = req.ip;
+  //var ip = req.ip;
   //var ip = '::ffff:103.229.83.102';
-  var realIp = ip.split(":").reverse()[0];
+  //var realIp = ip.split(":").reverse()[0];
+
+  const realIp = req.params.ip;
 
   ip2loc.IP2Location_init('./src/IP2LOCATION-LITE-DB9.BIN');
   result = ip2loc.IP2Location_get_all(realIp);
@@ -27,12 +29,12 @@ function getClientIP(req, res, next) {
 }
 
 
-//App.listen("3001",()=>console.log("Connected !!"));
+App.listen("3001",()=>console.log("Connected !!"));
 
 // we will pass our 'app' to 'https' server
-https.createServer({
-  key: fs.readFileSync('./key.pem'),
-  cert: fs.readFileSync('./cert.pem'),
-  passphrase: 'SULTAN16407916'
-}, App)
-.listen(8080);
+// https.createServer({
+//   key: fs.readFileSync('./key.pem'),
+//   cert: fs.readFileSync('./cert.pem'),
+//   passphrase: 'SULTAN16407916'
+// }, App)
+// .listen(3000);
