@@ -28,6 +28,10 @@ function getClientIP(req, res, next) {
   
 }
 
+App.get('/version',(req,res)=>{
+  res.send('september');
+});
+
 
 App.listen("3001",()=>console.log("Connected !!"));
 
